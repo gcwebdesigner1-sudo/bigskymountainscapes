@@ -188,6 +188,18 @@
       padding: 0 32px;
     }
 
+    .hero-location {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 44px;
+      opacity: 0;
+      animation: fadeUp 1s 1.15s forwards;
+    }
+
     .hero-eyebrow {
       font-family: var(--font-sans);
       font-size: 0.7rem;
@@ -1464,7 +1476,7 @@
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#testimonials">Reviews</a></li>
-    <li><a href="#contact" class="nav-cta">Free Estimate</a></li>
+    <li><a href="tel:4065794607" class="nav-cta">&#9742; (406) 579-4607</a></li>
   </ul>
   <div class="hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
@@ -1479,19 +1491,13 @@
   <div class="hero-overlay"></div>
 
   <div class="hero-content">
-    <p class="hero-eyebrow">Big Sky, Montana · Est. 2010</p>
     <h1 class="hero-title">
-      <span class="line"><span>Where Mountains</span></span>
-      <span class="line"><span>Meet <em>Masterful</em></span></span>
-      <span class="line"><span>Landscape Design</span></span>
+      <span class="line"><span>Big Sky</span></span>
+      <span class="line"><span><em>Mountain Scapes</em></span></span>
     </h1>
-    <p class="hero-subtitle">
-      Transforming Big Sky's breathtaking terrain into living works of art —
-      luxury landscapes crafted with precision, passion, and purpose.
-    </p>
+    <p class="hero-location">Big Sky, Montana</p>
     <div class="hero-btns">
-      <a href="#contact" class="btn-primary">Get a Free Estimate</a>
-      <a href="#services" class="btn-outline">Explore Services</a>
+      <a href="tel:4065794607" class="btn-primary">&#9742;&nbsp; Call (406) 579-4607</a>
     </div>
   </div>
 
@@ -1631,7 +1637,7 @@
 
       <div class="service-card reveal delay-2">
         <img
-          src="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=900&q=80&fit=crop"
+          src="https://images.unsplash.com/photo-1526392587392-d1627b6c134a?w=900&q=80&fit=crop"
           alt="Lawn Care & Maintenance"
           class="service-card-img"
           loading="lazy"
@@ -1774,7 +1780,7 @@
         <p class="section-label reveal">Our Work</p>
         <h2 class="section-title reveal delay-1">Recent <em>Projects</em></h2>
       </div>
-      <a href="#contact" class="gallery-link reveal delay-2">
+      <a href="tel:4065794607" class="gallery-link reveal delay-2">
         Start Your Project
         <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
@@ -2030,109 +2036,12 @@
         discuss your vision, and provide a detailed estimate at no charge.
       </p>
       <div class="reveal delay-3">
-        <a href="#contact" class="btn-primary">Schedule a Free Estimate</a>
+        <a href="tel:4065794607" class="btn-primary">&#9742;&nbsp; Call (406) 579-4607</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==============================
-     CONTACT
-============================== -->
-<section id="contact">
-  <div class="section-inner">
-    <div class="contact-grid">
-      <div class="contact-info reveal-left">
-        <p class="section-label">Get In Touch</p>
-        <h2 class="section-title">
-          Start Your<br>
-          <em>Dream Landscape</em>
-        </h2>
-        <p>
-          Ready to transform your outdoor space? Fill out the form and we'll get back to
-          you within one business day with a free consultation appointment.
-        </p>
-        <ul class="contact-details">
-          <li>
-            <div class="icon-wrap">
-              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <div>
-              <div class="detail-label">Address</div>
-              <div class="detail-val">47650 Gallatin Rd, Big Sky, MT 59716</div>
-            </div>
-          </li>
-          <li>
-            <div class="icon-wrap">
-              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .99h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            </div>
-            <div>
-              <div class="detail-label">Phone</div>
-              <div class="detail-val"><a href="tel:4065794607">(406) 579-4607</a></div>
-            </div>
-          </li>
-          <li>
-            <div class="icon-wrap">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            </div>
-            <div>
-              <div class="detail-label">Business Hours</div>
-              <div class="detail-val">Monday – Friday: 8:00 AM – 5:00 PM</div>
-            </div>
-          </li>
-          <li>
-            <div class="icon-wrap">
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            </div>
-            <div>
-              <div class="detail-label">Google Rating</div>
-              <div class="detail-val">5.0 Stars (10 Reviews)</div>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <div class="contact-form reveal-right">
-        <div class="form-row">
-          <div class="form-group">
-            <label>First Name</label>
-            <input type="text" placeholder="John" />
-          </div>
-          <div class="form-group">
-            <label>Last Name</label>
-            <input type="text" placeholder="Smith" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" placeholder="john@example.com" />
-        </div>
-        <div class="form-group">
-          <label>Phone Number</label>
-          <input type="tel" placeholder="(406) 000-0000" />
-        </div>
-        <div class="form-group">
-          <label>Service Interested In</label>
-          <select>
-            <option value="">Select a Service</option>
-            <option>Landscape Design</option>
-            <option>Hardscaping & Stonework</option>
-            <option>Irrigation Systems</option>
-            <option>Lawn Care & Maintenance</option>
-            <option>Native Plant Installation</option>
-            <option>Snow Removal & Winter Care</option>
-            <option>Full Property Transformation</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Tell Us About Your Project</label>
-          <textarea placeholder="Describe your property, vision, timeline, and any specific requests..."></textarea>
-        </div>
-        <button class="btn-submit">Send My Request</button>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ==============================
      FOOTER
@@ -2163,16 +2072,16 @@
           <li><a href="#gallery">Our Work</a></li>
           <li><a href="#process">Process</a></li>
           <li><a href="#testimonials">Reviews</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#rate-us">Leave a Review</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Contact</h4>
         <ul>
           <li><a href="tel:4065794607">(406) 579-4607</a></li>
-          <li><a href="#contact">47650 Gallatin Rd</a></li>
-          <li><a href="#contact">Big Sky, MT 59716</a></li>
-          <li><a href="#contact">Mon–Fri 8 AM–5 PM</a></li>
+          <li><a href="#">47650 Gallatin Rd</a></li>
+          <li><a href="#">Big Sky, MT 59716</a></li>
+          <li><a href="#">Mon–Fri 8 AM–5 PM</a></li>
         </ul>
       </div>
     </div>
