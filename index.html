@@ -384,6 +384,19 @@
     .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
     .lightbox-close { position: absolute; top: 24px; right: 32px; color: #fff; font-size: 2rem; cursor: pointer; font-family: var(--font-sans); font-weight: 300; z-index: 10000; }
 
+    /* SEND OPTIONS MODAL */
+    .send-modal { display:none; position:fixed; inset:0; z-index:10000; background:rgba(0,0,0,0.6); align-items:center; justify-content:center; padding:24px; }
+    .send-modal.active { display:flex; }
+    .send-modal-box { background:#fff; max-width:480px; width:100%; padding:48px 40px; position:relative; box-shadow:0 24px 80px rgba(0,0,0,0.25); }
+    .send-modal-close { position:absolute; top:16px; right:20px; background:none; border:none; font-size:1.8rem; color:var(--mid); cursor:pointer; font-family:var(--font-sans); font-weight:300; }
+    .send-option { display:flex; align-items:center; gap:18px; padding:18px 20px; border:1px solid rgba(0,0,0,0.1); transition:border-color 0.3s, background 0.3s; }
+    .send-option:hover { border-color:var(--green); background:rgba(61,90,62,0.04); }
+    .send-option-icon { width:48px; height:48px; display:flex; align-items:center; justify-content:center; flex-shrink:0; border-radius:50%; }
+    .send-option-icon svg { width:22px; height:22px; stroke:#fff; fill:none; stroke-width:1.5; }
+    .send-option-title { font-family:var(--font-sans); font-size:0.92rem; font-weight:600; color:var(--dark); margin-bottom:3px; }
+    .send-option-desc { font-family:var(--font-sans); font-size:0.78rem; font-weight:300; color:var(--mid); }
+    @media (max-width:768px) { .send-modal-box { padding:36px 24px; } }
+
     /* MOBILE CALL BAR */
     .mobile-call-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 999; }
     .mobile-call-bar-inner { display: flex; }
@@ -921,9 +934,9 @@
           </a>
         </div>
       </div>
-      <form class="estimate-form reveal-right" action="mailto:doug.starz@yahoo.com" method="post" enctype="text/plain">
+      <form class="estimate-form reveal-right" id="estimateForm" onsubmit="return showSendOptions(event)">
         <h3>Request Your Free Estimate</h3>
-        <p class="form-subtitle">We typically respond within 24 hours. Or call / text us directly.</p>
+        <p class="form-subtitle">We typically respond within 24 hours.</p>
         <div class="form-row">
           <div class="form-group"><label for="est-name">Your Name</label><input type="text" id="est-name" name="name" placeholder="John Smith" required /></div>
           <div class="form-group"><label for="est-phone">Phone Number</label><input type="tel" id="est-phone" name="phone" placeholder="(406) 555-1234" required /></div>
@@ -947,17 +960,45 @@
         <div class="form-group"><label for="est-address">Property Address</label><input type="text" id="est-address" name="address" placeholder="123 Mountain Rd, Big Sky, MT" /></div>
         <div class="form-group"><label for="est-message">Tell Us About Your Project</label><textarea id="est-message" name="message" placeholder="Describe your vision — what would you like to create?"></textarea></div>
         <button type="submit" class="btn-submit">Send Estimate Request</button>
-        <div style="display:flex; gap:12px; margin-top:20px;">
-          <a href="tel:4065794607" style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; padding:16px; border:1px solid var(--green); font-family:var(--font-sans); font-size:0.65rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--green); transition:background 0.3s, color 0.3s;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .99h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            Call Instead
-          </a>
-          <a href="sms:4065794607&body=Hi%20Doug%2C%20I%27d%20like%20to%20request%20a%20free%20estimate%20for%20landscaping.%20" style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; padding:16px; border:1px solid var(--green); font-family:var(--font-sans); font-size:0.65rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--green); transition:background 0.3s, color 0.3s;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-            Text Instead
-          </a>
-        </div>
       </form>
+
+      <!-- SEND OPTIONS MODAL -->
+      <div class="send-modal" id="sendModal">
+        <div class="send-modal-box">
+          <button class="send-modal-close" onclick="closeSendModal()">&times;</button>
+          <h3 style="font-family:var(--font-serif); font-size:1.5rem; font-weight:400; color:var(--dark); margin-bottom:8px;">How Would You Like to Send?</h3>
+          <p style="font-family:var(--font-sans); font-size:0.88rem; font-weight:300; color:var(--mid); margin-bottom:32px;">Your estimate request is ready. Choose how to send it to Doug.</p>
+          <div style="display:flex; flex-direction:column; gap:14px;">
+            <a id="sendEmail" href="#" class="send-option">
+              <div class="send-option-icon" style="background:var(--green);">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <div class="send-option-title">Send via Email</div>
+                <div class="send-option-desc">Opens your email app with the request filled in</div>
+              </div>
+            </a>
+            <a id="sendText" href="#" class="send-option">
+              <div class="send-option-icon" style="background:var(--gold);">
+                <svg viewBox="0 0 24 24" style="stroke:var(--dark);"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              </div>
+              <div>
+                <div class="send-option-title">Send via Text</div>
+                <div class="send-option-desc">Opens your messaging app with the request filled in</div>
+              </div>
+            </a>
+            <a href="tel:4065794607" class="send-option" onclick="closeSendModal()">
+              <div class="send-option-icon" style="background:var(--dark);">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .99h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              </div>
+              <div>
+                <div class="send-option-title">Call Instead</div>
+                <div class="send-option-desc">Call Doug directly at (406) 579-4607</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1211,6 +1252,38 @@
       if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); const links = document.querySelector('.nav-links'); if (links.style.position === 'fixed') toggleMenu(); }
     });
   });
+
+  // Estimate Form — Send Options
+  function showSendOptions(e) {
+    e.preventDefault();
+    const form = document.getElementById('estimateForm');
+    if (!form.checkValidity()) { form.reportValidity(); return false; }
+    const name = document.getElementById('est-name').value;
+    const phone = document.getElementById('est-phone').value;
+    const email = document.getElementById('est-email').value;
+    const service = document.getElementById('est-service');
+    const serviceName = service.options[service.selectedIndex].text;
+    const address = document.getElementById('est-address').value;
+    const message = document.getElementById('est-message').value;
+    const body = [
+      'Free Estimate Request from Mountain Scapes Website',
+      '',
+      'Name: ' + name,
+      'Phone: ' + phone,
+      email ? 'Email: ' + email : '',
+      service.value ? 'Service: ' + serviceName : '',
+      address ? 'Property: ' + address : '',
+      message ? 'Project Details: ' + message : ''
+    ].filter(Boolean).join('\n');
+    const subject = 'Free Estimate Request — ' + name;
+    document.getElementById('sendEmail').href = 'mailto:doug.starz@yahoo.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    const smsBody = 'Hi Doug, I\'d like a free estimate.\n' + 'Name: ' + name + '\nPhone: ' + phone + (service.value ? '\nService: ' + serviceName : '') + (address ? '\nAddress: ' + address : '') + (message ? '\nDetails: ' + message : '');
+    document.getElementById('sendText').href = 'sms:4065794607' + (/iPhone|iPad/i.test(navigator.userAgent) ? '&' : '?') + 'body=' + encodeURIComponent(smsBody);
+    document.getElementById('sendModal').classList.add('active');
+    return false;
+  }
+  function closeSendModal() { document.getElementById('sendModal').classList.remove('active'); }
+  document.getElementById('sendModal').addEventListener('click', function(e) { if (e.target === this) closeSendModal(); });
 
   // Gallery Lightbox
   document.querySelectorAll('.gallery-item').forEach(item => {
