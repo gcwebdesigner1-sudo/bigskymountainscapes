@@ -383,9 +383,12 @@
     .lightbox-close { position: absolute; top: 24px; right: 32px; color: #fff; font-size: 2rem; cursor: pointer; font-family: var(--font-sans); font-weight: 300; z-index: 10000; }
 
     /* MOBILE CALL BAR */
-    .mobile-call-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 999; background: var(--green); padding: 0; }
-    .mobile-call-bar a { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 18px; color: #fff; font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; }
-    .mobile-call-bar svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2; }
+    .mobile-call-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 999; }
+    .mobile-call-bar-inner { display: flex; }
+    .mobile-call-bar a { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 16px; color: #fff; font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; flex: 1; }
+    .mobile-call-bar .mcb-call { background: var(--green); }
+    .mobile-call-bar .mcb-text { background: var(--gold); color: var(--dark); }
+    .mobile-call-bar svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
     @media (max-width: 768px) {
       .mobile-call-bar { display: block; }
       footer { padding-bottom: 80px; }
@@ -905,11 +908,20 @@
           <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 30+ years of experience</li>
           <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Serving Big Sky &amp; surrounding areas</li>
         </ul>
-        <a href="tel:4065794607" class="btn-primary" style="display:inline-block">&#9742;&nbsp; Call (406) 579-4607</a>
+        <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:8px;">
+          <a href="tel:4065794607" class="btn-primary" style="display:inline-flex; align-items:center; gap:8px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .99h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Call (406) 579-4607
+          </a>
+          <a href="sms:4065794607&body=Hi%20Doug%2C%20I%27d%20like%20to%20request%20a%20free%20estimate%20for%20landscaping.%20" class="btn-outline" style="display:inline-flex; align-items:center; gap:8px; border-color:var(--green); color:var(--green);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            Text for Estimate
+          </a>
+        </div>
       </div>
       <form class="estimate-form reveal-right" action="mailto:doug.starz@yahoo.com" method="post" enctype="text/plain">
         <h3>Request Your Free Estimate</h3>
-        <p class="form-subtitle">We typically respond within 24 hours.</p>
+        <p class="form-subtitle">We typically respond within 24 hours. Or call / text us directly.</p>
         <div class="form-row">
           <div class="form-group"><label for="est-name">Your Name</label><input type="text" id="est-name" name="name" placeholder="John Smith" required /></div>
           <div class="form-group"><label for="est-phone">Phone Number</label><input type="tel" id="est-phone" name="phone" placeholder="(406) 555-1234" required /></div>
@@ -932,7 +944,17 @@
         </div>
         <div class="form-group"><label for="est-address">Property Address</label><input type="text" id="est-address" name="address" placeholder="123 Mountain Rd, Big Sky, MT" /></div>
         <div class="form-group"><label for="est-message">Tell Us About Your Project</label><textarea id="est-message" name="message" placeholder="Describe your vision — what would you like to create?"></textarea></div>
-        <button type="submit" class="btn-submit">Request Free Estimate</button>
+        <button type="submit" class="btn-submit">Send Estimate Request</button>
+        <div style="display:flex; gap:12px; margin-top:20px;">
+          <a href="tel:4065794607" style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; padding:16px; border:1px solid var(--green); font-family:var(--font-sans); font-size:0.65rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--green); transition:background 0.3s, color 0.3s;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .99h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Call Instead
+          </a>
+          <a href="sms:4065794607&body=Hi%20Doug%2C%20I%27d%20like%20to%20request%20a%20free%20estimate%20for%20landscaping.%20" style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; padding:16px; border:1px solid var(--green); font-family:var(--font-sans); font-size:0.65rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--green); transition:background 0.3s, color 0.3s;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            Text Instead
+          </a>
+        </div>
       </form>
     </div>
   </div>
@@ -1125,10 +1147,16 @@
 
 <!-- MOBILE CALL BAR -->
 <div class="mobile-call-bar">
-  <a href="tel:4065794607">
-    <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .99h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-    Call (406) 579-4607 — Free Estimate
-  </a>
+  <div class="mobile-call-bar-inner">
+    <a href="tel:4065794607" class="mcb-call">
+      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .99h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Call Now
+    </a>
+    <a href="sms:4065794607&body=Hi%20Doug%2C%20I%27d%20like%20to%20request%20a%20free%20estimate%20for%20landscaping.%20" class="mcb-text">
+      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      Text for Estimate
+    </a>
+  </div>
 </div>
 
 <script>
